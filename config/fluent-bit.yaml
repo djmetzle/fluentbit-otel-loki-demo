@@ -9,6 +9,12 @@ pipeline:
         logs:
           - name: opentelemetry_envelope
 
+          - name: content_modifier
+            context: otel_resource_attributes
+            action: upsert
+            key: 'service.name'
+            value: 'dummy'
+
   outputs:
     - name: 'opentelemetry'
       match: '*'
