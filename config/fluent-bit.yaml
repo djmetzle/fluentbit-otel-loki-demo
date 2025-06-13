@@ -11,15 +11,4 @@ pipeline:
       host: 'otelcol'
       port: 4318
       tls: false
-      log_response_payload: true
       logs_uri: /v1/logs
-      logs_body_key: '$message'
-      logs_span_id_message_key: span_id
-      logs_trace_id_message_key: trace_id
-      logs_severity_text_message_key: loglevel
-      logs_severity_number_message_key: lognum
-      add_label: job dummy
-      add_label: app dummy
-      add_label: testing true 
-      add_label: stream dummy
-      add_label: service.name dummy
