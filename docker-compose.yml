@@ -10,6 +10,20 @@
 
 version: "3"
 services:
+  otelcol:
+    image: otel/opentelemetry-collector-contrib:0.93.0
+    command:
+      - '--config=/etc/otelcol/config.yaml'
+    volumes:
+      - ./config/otel-collector.yaml:/etc/otelcol/config.yaml
+    ports:
+      - 4317:4317
+      - 4318:4318
+    depends_on:
+      - loki
+      - prometheus
+      - tempo
+
   grafana:
     image: grafana/grafana:10.0.10
     ports:
@@ -20,20 +34,6 @@ services:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
     volumes:
       - ./config/grafana-datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
-    depends_on:
-      - loki
-      - prometheus
-      - tempo
-
-  otelcol:
-    image: otel/opentelemetry-collector-contrib:0.93.0
-    command:
-      - '--config=/etc/otelcol/config.yaml'
-    volumes:
-      - ./config/otel-collector.yaml:/etc/otelcol/config.yaml
-    ports:
-      - 4317:4317
-      - 4318:4318
     depends_on:
       - loki
       - prometheus
