@@ -10,6 +10,16 @@
 
 version: "3"
 services:
+  fluentbit:
+    image: cr.fluentbit.io/fluent/fluent-bit
+    command:
+      - '-c'
+      - '/fluent-bit/etc/fluent-bit.yaml'
+    volumes:
+      - ./config/fluent-bit.yaml:/fluent-bit/etc/fluent-bit.yaml:z
+    depends_on:
+      - otelcol
+
   otelcol:
     image: otel/opentelemetry-collector-contrib:0.128.0
     command:
