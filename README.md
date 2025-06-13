@@ -2,7 +2,7 @@
 
 ```mermaid
 flowchart TB
-    fluentbit[fluent-bit] -->|forwards| otel[OTEL Collector]
+    fluentbit[fluent-bit] --> otel[OTEL Collector]
     otel --> Loki
     otel --> Prometheus
     otel --> Tempo
