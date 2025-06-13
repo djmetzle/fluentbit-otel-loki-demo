@@ -5,6 +5,10 @@ pipeline:
       dummy: '{"misclabel": "dummy", "message": "dummy log entry here" }'
       interval_sec: 1
 
+      processors:
+        logs:
+          - name: opentelemetry_envelope
+
   outputs:
     - name: 'opentelemetry'
       match: '*'
