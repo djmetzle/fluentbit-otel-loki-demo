@@ -2,7 +2,7 @@
 pipeline:
   inputs:
     - name: dummy
-      dummy: 'foo'
+      dummy: '{"misclabel": "dummy", "message": "dummy log entry here" }'
       interval_sec: 1
 
   outputs:
@@ -12,3 +12,4 @@ pipeline:
       port: 4318
       tls: false
       logs_uri: /v1/logs
+      logs_body_key_attributes: true
